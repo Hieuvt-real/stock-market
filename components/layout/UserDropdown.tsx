@@ -29,7 +29,7 @@ const UserDropdown = () => {
       <DropdownMenuTrigger asChild>
         <Button
           variant={"ghost"}
-          className="flex item-center gap-3 text-gray-400 hover:text-yellow-500 "
+          className="flex items-center gap-3 text-gray-400 hover:text-yellow-500 "
         >
           <Avatar className="w-8 h-8">
             <AvatarImage src="https://github.com/shadcn.png" />
@@ -39,7 +39,7 @@ const UserDropdown = () => {
           </Avatar>
 
           <div className="hidden md:flex flex-col items-start">
-            <span className="text-base font-medium text-gary-400">
+            <span className="text-base font-medium text-gray-400">
               {user.name}
             </span>
           </div>
@@ -55,7 +55,7 @@ const UserDropdown = () => {
               </AvatarFallback>
             </Avatar>
             <div className="flex flex-col">
-              <span className="text-base font-medium text-gary-400">
+              <span className="text-base font-medium text-gray-400">
                 {user.name}
               </span>
               <span className="text-sm text-gray-500">{user.email}</span>

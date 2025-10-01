@@ -6,8 +6,13 @@ import InputField from "@/components/forms/InputField";
 import { Button } from "@/components/ui/button";
 import { REGEX_EMAIL } from "@/lib/constants";
 import { useForm } from "react-hook-form";
+import { signInWithEmail } from "@/lib/auth.action";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const SignInPage = () => {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -22,9 +27,14 @@ const SignInPage = () => {
 
   const onSubmit = async (data: SignUpFormData) => {
     try {
-      console.log(data);
+      const result = await signInWithEmail(data);
+      if (result.success) router.push("/");
     } catch (error) {
       console.log(error);
+      toast.error("Sign in failed", {
+        description:
+          error instanceof Error ? error.message : "Failed to sign in",
+      });
     }
   };
 

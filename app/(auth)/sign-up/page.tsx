@@ -13,8 +13,13 @@ import {
   RISK_TOLERANCE_OPTIONS,
 } from "@/lib/constants";
 import { useForm } from "react-hook-form";
+import { signUpWithEmail } from "@/lib/auth.action";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const SignUpPage = () => {
+  const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -35,9 +40,16 @@ const SignUpPage = () => {
 
   const onSubmit = async (data: SignUpFormData) => {
     try {
-      console.log(data);
+      const result = await signUpWithEmail(data);
+      if (result.success) {
+        router.push("/");
+      }
     } catch (error) {
       console.log(error);
+      toast.error("Sign up failed", {
+        description:
+          error instanceof Error ? error.message : "Fail to create an account",
+      });
     }
   };
 
